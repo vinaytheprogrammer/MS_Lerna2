@@ -9,8 +9,8 @@ export async function migrate(args: string[]) {
   try {
     const connection = await mysql.createConnection({
       host: 'localhost',       // replace if different
-      user: 'vinay',            // your MySQL user
-      password: 'password',            // your MySQL password
+      user: 'root',            // your MySQL user
+      password: 'Vinay@123',            // your MySQL password
       port: 3306               // default port
     });
 
