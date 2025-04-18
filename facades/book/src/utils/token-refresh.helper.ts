@@ -6,7 +6,7 @@ import axios from 'axios';
 import {HttpErrors} from '@loopback/rest';
 
 export class TokenRefreshHelper {
-  static skipPaths = ['/login', '/refresh-token', '/signup', '/ping'];
+  static skipPaths = ['/login', '/refresh-token', '/signup', '/ping', '/logout', ''];
 
   static async refreshAccessTokenIfNeeded(
     req: Request,
@@ -26,7 +26,7 @@ export class TokenRefreshHelper {
       jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET || '1');
       req.headers.authorization = `Bearer ${accessToken}`;
     } catch (err: any) {
-      if (err.name === 'TokenExpiredError' && refreshToken) {
+      if ((err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') && refreshToken) {
         try {
           const refreshResponse = await axios.post(
             `http://localhost:3011/refresh-token`,
