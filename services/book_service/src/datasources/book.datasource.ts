@@ -1,7 +1,7 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
-const config = {
+export const config = {
   name: 'book',
   connector: 'mysql',
   url: 'mysql://root:Vinay@123@localhost/book',
