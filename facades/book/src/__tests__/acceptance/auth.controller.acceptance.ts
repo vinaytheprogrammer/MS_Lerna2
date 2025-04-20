@@ -7,11 +7,6 @@ import {Signup, Login, Token} from '../../models/user';
 describe('AuthController', () => {
   let authController: AuthController;
 
-  const dummyToken: Token = {
-    accessToken: 'dummy-access-token',
-    refreshToken: 'dummy-refresh-token',
-  };
-
   beforeEach(() => {
     authController = new AuthController();
   });
@@ -20,14 +15,13 @@ describe('AuthController', () => {
     sinon.restore();
   });
 
-  
   it('should handle user signup failure', async () => {
     const axiosPostStub: sinon.SinonStub = sinon.stub(axios, 'post');
     const userData: Signup = {
       name: 'testuser',
       password: 'testpass',
       email: 'fail@example.com',
-      role: 'user', // Role is set in the controller
+      role: 'user',
     };
 
     const error = new Error('Signup failed');
@@ -43,8 +37,6 @@ describe('AuthController', () => {
       {...userData, role: 'user'},
     );
   });
-
-
 
   it('should handle login failure', async () => {
     const axiosPostStub: sinon.SinonStub = sinon.stub(axios, 'post');
@@ -67,8 +59,6 @@ describe('AuthController', () => {
       credentials,
     );
   });
-
- 
 
   it('should handle logout failure', async () => {
     const axiosPostStub: sinon.SinonStub = sinon.stub(axios, 'post');

@@ -1,9 +1,9 @@
 export interface Signup {
-    id?: string;
-    name: string;
-    email: string;
-    password: string;
-    role: 'admin' | 'user' | 'unknown';
+  id?: string | number;
+  name: string;
+  email: string;
+  password: string;
+  role: 'admin' | 'user' | 'unknown';
   }
   
   export interface Login {
